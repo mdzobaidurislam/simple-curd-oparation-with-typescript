@@ -1,5 +1,12 @@
 # All API documentation
 
+## Clone the project
+# Run command
+`npm install`
+
+# Go to project directory with command `cd project name` and run command
+`npm start`
+
 *  # City Api 
 
     `http://localhost:8080/api/city`  -> method [Get] get all cities

@@ -13,7 +13,7 @@ app.use(cityRouter)
 app.use(packageRouter)
 
 app.get('/', (req: Request, res: Response) =>
-  res.send('Welcome to the Mongoose & TypeScript example')
+  res.send('Welcome to the Simple CURD Oparation! ')
 );
 
 
