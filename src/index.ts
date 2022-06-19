@@ -1,12 +1,14 @@
-import express, { Request, Response, Application } from 'express';
+import express, { Request, Response, Application, NextFunction } from 'express';
 import { json } from 'body-parser';
 import mongoose,{ConnectOptions } from 'mongoose'
 import { cityRouter } from './routes/cityRoute';
 import { packageRouter } from './routes/packageRoute';
-
+import { createClient } from 'redis'
+import 'dotenv/config'
 import connect from './connect';
 const app: Application = express();
-const port = 8080;
+
+const PORT = process.env.PORT || 8080;
 
 app.use(json());
 app.use(cityRouter)
@@ -16,12 +18,14 @@ app.get('/', (req: Request, res: Response) =>
   res.send('Welcome to the Mongoose & TypeScript example')
 );
 
-app.listen(port, () =>
-  console.log(`Application started successfully on port ${port}.`)
+
+app.listen(PORT, () =>
+  console.log(`Application started successfully on port ${PORT}.`)
 );
-const db = 'mongodb://localhost:27017/todo-typescript';
+const db = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.1wbmx.mongodb.net/${process.env.DB_DATABASE}?retryWrites=true&w=majority`;
 connect({db});
 
+// typscript
 
 // mongodb connection
 // const url = 'mongodb://localhost:27017/todo-typescript'

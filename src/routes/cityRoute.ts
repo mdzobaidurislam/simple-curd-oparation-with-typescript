@@ -9,4 +9,5 @@ router.post('/api/city',addCity)
 router.put('/api/city/:id',updateCity)
 router.delete('/api/city/:id',deleteCity)
 
+
 export {router as cityRouter};

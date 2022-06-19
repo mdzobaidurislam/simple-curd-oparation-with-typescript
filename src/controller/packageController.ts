@@ -48,11 +48,62 @@ export const addPackage = async (req: Request, res: Response) => {
   
 };
 
+  // edit package
+  export const editPackage = async (req: Request, res: Response) => {
+    try {
+      const result = await Package.findById(req.params.id);
+      if (result) {
+        res.json(result);
+      } else {
+        res.json("Package not found");
+      }
+    } catch (error) {
+      res.json({
+        err: error,
+      });
+    }
+  }
+
+// update package
+export const updatepackage = async (req: Request, res: Response) => {
+  try {
+    const findPackage = await Package.findById(req.params.id);
+    if(findPackage){
+
+     Package.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      (err: any, result: any) => {
+        if (err) {
+          res.json({
+            msg: "Package not updated!",
+            error: err.message,
+          });
+        } else {
+          res.json({
+            msg: "Package Successfully Updated!",
+          });
+        }
+      }
+    );
+  }else{
+    res.json({
+      msg: "Package not found!",
+    });
+  }
+  } catch (error) {
+    res.json({
+      msg: "Package not found!",
+    });
+  }
+
+}
+
+
  // delete
  export const deletePackage = async (req: Request, res: Response)=> {
   try {
     const { id } = req.params;
- console.log(id)
   const findPackage = await Package.findById(id);
  
   if (findPackage) {
@@ -79,13 +130,17 @@ export const addPackage = async (req: Request, res: Response) => {
 // filter packages
 
 export const packagesFilter = async (req: Request, res: Response) => {
-  const fiterQuery = req.query
-  console.log(fiterQuery); 
-  const query = {id: fiterQuery.search}
+  
+  // const { title, ...others } = req.query;
+  const queryResult = req.query;
+  const newQuery = {...queryResult}
   try {
-    const result = await Package.find(query);
+    const result = await Package.find({
+    ...newQuery
+    })
+
     if(result.length > 0) {
-      res.status(200).json(result);
+      res.status(200).json(result[0]);
     }else{
       res.json({
         msg: "Packeage not found!",
@@ -97,5 +152,4 @@ export const packagesFilter = async (req: Request, res: Response) => {
       err: error
     });
   }
-  res.json(query)
 }
