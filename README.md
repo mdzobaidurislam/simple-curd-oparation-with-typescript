@@ -30,5 +30,16 @@
 
 
     ## Package filter by (title, id, startingPrice, duration, cityName, isActive, isMostPoplar )
-    
+
     `http://localhost:8080/api/packagefilter?title={title name}&id={id}&` etc   -> method [GET] Fillter  package by search query
+
+
+
+## `Technical Documentation` 
+
+ * NodeJS
+
+ * MongoDB
+ * Typescript
+ * ExpressJS
+ * REST

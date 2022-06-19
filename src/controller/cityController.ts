@@ -93,9 +93,8 @@ export const addCity = async (req: Request, res: Response) => {
   export const deleteCity = async (req: Request, res: Response)=> {
     try {
       const { id } = req.params;
-   console.log(id)
-    const findCity = await City.findById(id);
-    console.log(findCity)
+     const findCity = await City.findById(id);
+     
     if (findCity) {
       const result = await City.findByIdAndDelete({
         _id: id,

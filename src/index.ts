@@ -1,9 +1,7 @@
-import express, { Request, Response, Application, NextFunction } from 'express';
+import express, { Request, Response, Application } from 'express';
 import { json } from 'body-parser';
-import mongoose,{ConnectOptions } from 'mongoose'
 import { cityRouter } from './routes/cityRoute';
 import { packageRouter } from './routes/packageRoute';
-import { createClient } from 'redis'
 import 'dotenv/config'
 import connect from './connect';
 const app: Application = express();
